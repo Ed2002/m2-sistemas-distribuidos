@@ -1,0 +1,87 @@
+### Pergunta à RAIZ (10.53.0.10), sem recursão: ela não sabe a resposta, só indica quem sabe (.lab)
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.8-Ubuntu <<>> @10.53.0.10 www.sd.lab A +norecurse
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24613
+;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: e26d9f0294d154f2010000006ae276f6ee567468f4af2ec1 (good)
+;; QUESTION SECTION:
+;www.sd.lab.			IN	A
+
+;; AUTHORITY SECTION:
+lab.			86400	IN	NS	ns1.nic.lab.
+
+;; ADDITIONAL SECTION:
+ns1.nic.lab.		86400	IN	A	10.53.0.20
+
+;; Query time: 19 msec
+;; SERVER: 10.53.0.10#53(10.53.0.10) (UDP)
+;; WHEN: Wed Oct 28 22:28:06 UTC 2026
+;; MSG SIZE  rcvd: 111
+
+
+### Pergunta ao TLD .lab (10.53.0.20): indica os servidores de sd.lab + glue (endereços)
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.8-Ubuntu <<>> @10.53.0.20 www.sd.lab A +norecurse
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26445
+;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 2, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 276af5baec261458010000006ae276f835c84ec7658afc2e (good)
+;; QUESTION SECTION:
+;www.sd.lab.			IN	A
+
+;; AUTHORITY SECTION:
+sd.lab.			86400	IN	NS	ns1.sd.lab.
+sd.lab.			86400	IN	NS	ns2.sd.lab.
+
+;; ADDITIONAL SECTION:
+ns2.sd.lab.		86400	IN	A	10.53.0.31
+ns1.sd.lab.		86400	IN	A	10.53.0.30
+
+;; Query time: 0 msec
+;; SERVER: 10.53.0.20#53(10.53.0.20) (UDP)
+;; WHEN: Wed Oct 28 22:28:08 UTC 2026
+;; MSG SIZE  rcvd: 135
+
+
+### Pergunta ao autoritativo de sd.lab (10.53.0.30): resposta final com flag aa
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.8-Ubuntu <<>> @10.53.0.30 www.sd.lab A +norecurse
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13042
+;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: b3bcb38b162db1f1010000006ae276fade3e74cb7ca08066 (good)
+;; QUESTION SECTION:
+;www.sd.lab.			IN	A
+
+;; ANSWER SECTION:
+www.sd.lab.		300	IN	A	10.53.0.80
+
+;; AUTHORITY SECTION:
+sd.lab.			300	IN	NS	ns2.sd.lab.
+sd.lab.			300	IN	NS	ns1.sd.lab.
+
+;; ADDITIONAL SECTION:
+ns1.sd.lab.		300	IN	A	10.53.0.30
+ns2.sd.lab.		300	IN	A	10.53.0.31
+
+;; Query time: 23 msec
+;; SERVER: 10.53.0.30#53(10.53.0.30) (UDP)
+;; WHEN: Wed Oct 28 22:28:10 UTC 2026
+;; MSG SIZE  rcvd: 151
+

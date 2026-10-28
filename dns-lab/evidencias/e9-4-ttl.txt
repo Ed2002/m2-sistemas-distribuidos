@@ -1,0 +1,7 @@
+t(s)    tempo(ms)    TTL   consultas que chegaram aos autoritativos
+0              68     10   root=5 tld-lab=4 sd-primary=2 sd-secondary=1 
+4               0      7   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+8               0      3   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+12             24     10   root=0 tld-lab=0 sd-primary=0 sd-secondary=1 
+16              0      5   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+Quando o TTL chega a 0, a entrada sai do cache e o resolvedor volta a consultar o autoritativo.

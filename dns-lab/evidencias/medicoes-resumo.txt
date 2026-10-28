@@ -1,0 +1,10 @@
+metrica             n   media_ms  desvio_ms
+latencia_fria       5        4.0        2.8
+latencia_quente     5        0.0        0.0
+propagacao          5      172.0      128.7
+recuperacao         5     3793.0      943.6
+failover            5      483.2      439.3
+
+eleicao: nao se aplica. No DNS o primario e definido na configuracao (type primary/secondary);
+nao ha eleicao de lider. A medida analoga e o failover: com ns1 fora, o resolvedor usa ns2.
+Resolucao: o dig informa o tempo em ms inteiros; os polls de propagacao/recuperacao tem resolucao de poucos ms.

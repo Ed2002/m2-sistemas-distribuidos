@@ -1,0 +1,16 @@
+zone lab/IN: sd.lab/NS 'ns1.sd.lab' has no REQUIRED GLUE address records (A or AAAA)
+zone lab/IN: sd.lab/NS 'ns1.sd.lab' (out of zone) has no addresses records (A or AAAA)
+zone lab/IN: sd.lab/NS 'ns2.sd.lab' has no REQUIRED GLUE address records (A or AAAA)
+zone lab/IN: sd.lab/NS 'ns2.sd.lab' (out of zone) has no addresses records (A or AAAA)
+zone lab/IN: loaded serial 2026102801
+OK
+zone reload queued
+### Glue publicado agora pelo .lab:
+ns2.sd.lab.		86400	IN	A	10.53.0.99
+ns1.sd.lab.		86400	IN	A	10.53.0.98
+### Resolução via resolvedor (espera os timeouts):
+;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 54953
+;; Query time: 10001 msec
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37397
+www.sd.lab.		300	IN	A	10.53.0.80
+;; Query time: 43 msec

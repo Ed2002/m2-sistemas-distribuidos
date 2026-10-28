@@ -1,0 +1,22 @@
+consulta                  tempo(ms)    TTL   consultas que chegaram aos autoritativos
+1 (cache vazio)                  64    300   root=5 tld-lab=4 sd-primary=1 sd-secondary=2 
+2 (cache)                         0    298   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+3 (cache)                         0    297   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+4 (cache)                         0    296   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+5 (cache)                         0    295   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+6 (cache)                         0    294   root=0 tld-lab=0 sd-primary=0 sd-secondary=0 
+api.sd.lab (outro nome)          20    300   root=0 tld-lab=0 sd-primary=1 sd-secondary=0 
+
+Consultas que os autoritativos receberam na 1ª resolução (cache vazio), em ordem de chegada:
+  10.53.0.53#42735 (lab): query: lab IN NS -E(0)DCK (10.53.0.10)
+  10.53.0.53#34579 (.): query: . IN NS -E(0)DK (10.53.0.10)
+  10.53.0.53#56803 (sd.lab): query: sd.lab IN NS -E(0)DCK (10.53.0.20)
+  10.53.0.53#60097 (ns1.nic.lab): query: ns1.nic.lab IN AAAA -E(0)DCV (10.53.0.10)
+  10.53.0.53#34792 (ns1.nic.lab): query: ns1.nic.lab IN AAAA -E(0)DCV (10.53.0.20)
+  10.53.0.53#51386 (ns1.sd.lab): query: ns1.sd.lab IN AAAA -E(0)DCV (10.53.0.10)
+  10.53.0.53#40304 (www.sd.lab): query: www.sd.lab IN A -E(0)DCK (10.53.0.30)
+  10.53.0.53#44198 (ns2.sd.lab): query: ns2.sd.lab IN AAAA -E(0)DCV (10.53.0.10)
+  10.53.0.53#43930 (ns2.sd.lab): query: ns2.sd.lab IN AAAA -E(0)DCV (10.53.0.20)
+  10.53.0.53#41388 (ns1.sd.lab): query: ns1.sd.lab IN AAAA -E(0)DCV (10.53.0.20)
+  10.53.0.53#37007 (ns1.sd.lab): query: ns1.sd.lab IN AAAA -E(0)DCK (10.53.0.31)
+  10.53.0.53#43268 (ns2.sd.lab): query: ns2.sd.lab IN AAAA -E(0)DCK (10.53.0.31)

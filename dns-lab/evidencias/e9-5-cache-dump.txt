@@ -1,0 +1,55 @@
+; Cache dump of view '_default' (cache _default)
+;
+; using a 0 second stale ttl
+$DATE 20261028222926
+; authanswer
+.			86363	IN NS	a.root-servers.lab.
+; glue
+lab.			86363	NS	ns1.nic.lab.
+; answer
+ns1.nic.lab.		3563	\-AAAA	;-$NXRRSET
+; lab. SOA ns1.nic.lab. hostmaster.nic.lab. 2026102801 1800 900 604800 3600
+; glue
+			86363	A	10.53.0.20
+; glue
+a.root-servers.lab.	86363	A	10.53.0.10
+; authauthority
+sd.lab.			263	NS	ns1.sd.lab.
+			263	NS	ns2.sd.lab.
+; answer
+ns1.sd.lab.		23	\-AAAA	;-$NXRRSET
+; sd.lab. SOA ns1.sd.lab. hostmaster.sd.lab. 2026102801 3600 600 86400 60
+; glue
+			86363	A	10.53.0.30
+; answer
+ns2.sd.lab.		23	\-AAAA	;-$NXRRSET
+; sd.lab. SOA ns1.sd.lab. hostmaster.sd.lab. 2026102801 3600 600 86400 60
+; glue
+			86363	A	10.53.0.31
+; authanswer
+www.sd.lab.		299	A	10.53.0.80
+;
+; Address database dump
+;
+; [edns success/timeout]
+; [plain success/timeout]
+;
+; ns1.sd.lab [v4 TTL 9] [v6 TTL 23] [v4 success] [v6 nxrrset]
+;	10.53.0.30 [srtt 12199] [flags 00000004] [edns 2/0] [plain 0/0] [udpsize 512] [cookie=a95306916eec176c010000006ae27721a6a97dcb00a76356] [ttl 1763]
+; ns2.sd.lab [v4 TTL 9] [v6 TTL 23] [v4 success] [v6 nxrrset]
+;	10.53.0.31 [srtt 13980] [flags 00000004] [edns 3/0] [plain 0/0] [udpsize 512] [cookie=352c5b720b6c2ad9010000006ae27745602e88017087a410] [ttl 1763]
+; ns1.nic.lab [v6 TTL 3563] [v4 unexpected] [v6 nxrrset]
+;
+; Unassociated entries
+;
+;	10.53.0.10 [srtt 18533] [flags 00000004] [edns 5/0] [plain 0/0] [udpsize 512] [cookie=7173c4735609193d010000006ae2772160f1a963e2e515bc] [ttl 1763]
+;	10.53.0.20 [srtt 16038] [flags 00000004] [edns 4/0] [plain 0/0] [udpsize 512] [cookie=1eee7422adc8fa5c010000006ae2772135e53d215272b588] [ttl 1763]
+;
+; Bad cache
+;
+;
+; SERVFAIL cache
+;
+;
+;
+;

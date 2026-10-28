@@ -1,0 +1,19 @@
+; Zona sd.lab (primário). Ao editar, SEMPRE incremente o serial.
+$TTL 300
+@       IN SOA  ns1.sd.lab. hostmaster.sd.lab. (
+                2026102801 ; serial
+                3600       ; refresh
+                600        ; retry
+                86400      ; expire
+                60 )       ; TTL de cache negativo
+        IN NS   ns1.sd.lab.
+        IN NS   ns2.sd.lab.
+
+ns1         IN A     10.53.0.30
+ns2         IN A     10.53.0.31
+
+www         IN A     10.53.0.80
+api         IN A     10.53.0.81
+app         IN CNAME www
+curto  10   IN A     10.53.0.82   ; TTL de 10 s: serve para ver o cache expirar
+versao      IN TXT   "2026102801"

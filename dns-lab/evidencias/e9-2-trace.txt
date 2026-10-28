@@ -1,0 +1,24 @@
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.8-Ubuntu <<>> +trace +additional www.sd.lab @10.53.0.53
+;; global options: +cmd
+.			86400	IN	NS	a.root-servers.lab.
+a.root-servers.lab.	86400	IN	A	10.53.0.10
+;; Received 103 bytes from 10.53.0.53#53(10.53.0.53) in 24 ms
+
+lab.			86400	IN	NS	ns1.nic.lab.
+ns1.nic.lab.		86400	IN	A	10.53.0.20
+;; Received 111 bytes from 10.53.0.10#53(a.root-servers.lab) in 24 ms
+
+sd.lab.			86400	IN	NS	ns1.sd.lab.
+sd.lab.			86400	IN	NS	ns2.sd.lab.
+ns2.sd.lab.		86400	IN	A	10.53.0.31
+ns1.sd.lab.		86400	IN	A	10.53.0.30
+;; Received 135 bytes from 10.53.0.20#53(ns1.nic.lab) in 24 ms
+
+www.sd.lab.		300	IN	A	10.53.0.80
+sd.lab.			300	IN	NS	ns2.sd.lab.
+sd.lab.			300	IN	NS	ns1.sd.lab.
+ns1.sd.lab.		300	IN	A	10.53.0.30
+ns2.sd.lab.		300	IN	A	10.53.0.31
+;; Received 151 bytes from 10.53.0.31#53(ns2.sd.lab) in 20 ms
+

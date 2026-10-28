@@ -1,0 +1,4 @@
+; Root hints do laboratório: substitui a lista dos 13 servidores raiz reais.
+; É o único ponto de partida que o resolvedor conhece.
+.                       3600000  IN  NS  a.root-servers.lab.
+a.root-servers.lab.     3600000  IN  A   10.53.0.10

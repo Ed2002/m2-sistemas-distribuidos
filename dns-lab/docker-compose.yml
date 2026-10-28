@@ -1,0 +1,90 @@
+# Laboratório DNS — hierarquia e delegação (ênfase A)
+#
+#   raiz (.)  ──delega──▶  TLD .lab  ──delega──▶  sd.lab (primário + secundário)
+#                                                        ▲
+#   cliente ──▶ resolvedor recursivo (cache) ────────────┘
+#
+# Rede 10.53.0.0/24 com IPs fixos (glue e root hints dependem de IP estático).
+name: dns-lab
+
+x-bind: &bind
+  build: ./image
+  image: dns-lab/bind9:local
+  restart: unless-stopped
+  cap_add: [NET_ADMIN]          # só para o atraso artificial opcional (scripts/atraso.sh)
+  deploy:
+    resources:
+      limits:
+        memory: 128M            # R1: limite de memória declarado
+        cpus: "0.50"
+
+services:
+  root:
+    <<: *bind
+    hostname: a-root-servers
+    networks:
+      dnsnet: { ipv4_address: 10.53.0.10 }
+    volumes:
+      - ./config/root/named.conf:/etc/bind/named.conf:ro
+      - ./config/root/zones:/zones:ro
+
+  tld-lab:
+    <<: *bind
+    hostname: ns1-nic-lab
+    networks:
+      dnsnet: { ipv4_address: 10.53.0.20 }
+    volumes:
+      - ./config/tld-lab/named.conf:/etc/bind/named.conf:ro
+      - ./config/tld-lab/zones:/zones:ro
+
+  sd-primary:
+    <<: *bind
+    hostname: ns1-sd-lab
+    networks:
+      dnsnet: { ipv4_address: 10.53.0.30 }
+    volumes:
+      - ./config/sd-primary/named.conf:/etc/bind/named.conf:ro
+      - ./config/sd-primary/zones:/zones:ro
+
+  sd-secondary:
+    <<: *bind
+    hostname: ns2-sd-lab
+    depends_on: [sd-primary]
+    networks:
+      dnsnet: { ipv4_address: 10.53.0.31 }
+    volumes:
+      - ./config/sd-secondary/named.conf:/etc/bind/named.conf:ro
+
+  resolver:
+    <<: *bind
+    hostname: resolver
+    depends_on: [root, tld-lab, sd-primary, sd-secondary]
+    networks:
+      dnsnet: { ipv4_address: 10.53.0.53 }
+    volumes:
+      - ./config/resolver/named.conf:/etc/bind/named.conf:ro
+      - ./config/resolver/zones:/zones:ro
+
+  client:
+    image: dns-lab/bind9:local
+    hostname: client
+    entrypoint: ["sleep", "infinity"]
+    restart: unless-stopped
+    depends_on: [resolver]
+    dns: [10.53.0.53]           # o DNS interno do Docker encaminha nomes .lab para o resolvedor
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: "0.50"
+    networks:
+      dnsnet: { ipv4_address: 10.53.0.100 }
+    volumes:
+      - ./scripts/lib:/scripts:ro
+
+networks:
+  dnsnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.53.0.0/24

@@ -1,0 +1,2 @@
+# Força fim de linha LF: scripts e zonas quebram com CRLF dentro dos contêineres Linux
+* text=auto eol=lf
