@@ -137,6 +137,14 @@ docker-compose.yml        # 6 serviços, rede 10.53.0.0/24, limites de memória
 image/                    # Dockerfile (Ubuntu 24.04 + BIND 9.18) e entrypoint
 config/<serviço>/         # named.conf e zonas de cada nó
 scripts/                  # verificar, e9, e9-glue, medir, atraso
-scripts/lib/              # auxiliares que rodam dentro do cliente
+scripts/lib/              # auxiliares que rodam dentro do cliente (polls e amostragem do E9)
 evidencias/               # saídas geradas pelos scripts
+relatorio/                # rascunho das seções E9 e R7
+apresentacao/             # slides do seminário
 ```
+
+## Notas para Windows (Docker Desktop + Git Bash)
+
+- Cada `docker compose exec` leva ~2 s. Por isso as partes 3 e 4 do `e9.sh` rodam as consultas dentro do cliente (`scripts/lib/amostrar.sh`), com o relógio do contêiner; cronometradas de fora, as amostras do TTL atrasavam e o cache já tinha vencido.
+- O Git Bash reescreve caminhos como `/scripts/x.sh` para `C:/Program Files/Git/...`. O `_comum.sh` desliga isso com `MSYS_NO_PATHCONV=1`.
+- O mesmo overhead entra na métrica `recuperacao` do `medir.sh` (1 a 2 s a mais que no Linux).
